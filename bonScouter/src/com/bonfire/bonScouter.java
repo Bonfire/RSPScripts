@@ -9,7 +9,7 @@ import org.rspeer.ui.Log;
 
 import java.awt.*;
 
-@ScriptMeta(developer = "Bonfire", name = "bonScouter", desc = "A script that scouts a specific area and hops worlds, calling out any people that have specific items.")
+@ScriptMeta(developer = "Bonfire", name = "bonScouter", desc = "A script that scouts a specific area and hops worlds, calling out any people that have specific items.", version = 1.1)
 public class bonScouter extends TaskScript implements RenderListener {
     private static boolean scanComplete = true;
     private static int worldsHopped;
