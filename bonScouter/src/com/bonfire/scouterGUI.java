@@ -11,12 +11,20 @@ public class scouterGUI extends JFrame {
     private JCheckBox useDiscordWebhookCheckBox;
     private JTextField webhookURLText;
 
-    private JCheckBox membersCheckBox;
-    private JCheckBox wildernessCheckBox;
+    private static JCheckBox membersCheckBox;
+    private static JCheckBox wildernessCheckBox;
 
     // Getter to fetch the text of the itemTextField
     public static String getItemTextField() {
         return itemTextField.getText();
+    }
+
+    public static boolean getMembersCheckBox() {
+        return membersCheckBox.isSelected();
+    }
+
+    public static boolean getWildernessCheckBox() {
+        return wildernessCheckBox.isSelected();
     }
 
     public scouterGUI() {
@@ -45,7 +53,7 @@ public class scouterGUI extends JFrame {
         thirdRow.add(membersCheckBox);
         thirdRow.add(wildernessCheckBox);
         thirdRow.add(setAreaToScoutButton);
-        
+
         JPanel organizerPanel = new JPanel(new BorderLayout());
         organizerPanel.add(firstRow, BorderLayout.NORTH);
         organizerPanel.add(secondRow, BorderLayout.CENTER);

@@ -16,7 +16,12 @@ public class Hop extends Task {
     public int execute() {
         // Hop worlds and increment the world hop count
         Log.fine("Hopping worlds...");
-        WorldHopper.randomHopInF2p();
+
+        // Get world filters from user's input and hop to the worlds filtered by the predicate
+        WorldHopper.randomHop(world -> world.isMembers() == scouterGUI.getMembersCheckBox()
+                        && world.getActivity().contains("Wilderness") == scouterGUI.getWildernessCheckBox());
+
+        // Increment the world count
         bonScouter.incrementWorld();
 
         // Notify the Scan task that it is able to scan
