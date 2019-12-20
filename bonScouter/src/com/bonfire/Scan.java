@@ -66,7 +66,7 @@ public class Scan extends Task {
                 int currentWorld = Worlds.getCurrent();
 
                 // Call out the player in the debug console
-                Log.info(nearbyPlayer.getName() + " | World " + currentWorld + " | " + Integer.toString(nearbyPlayer.getTeam()) + " | " + (nearbyPlayer.getSkullIcon() == 0 ? "Skulled" : "Not Skulled") + " | " + playersItemsString);
+                Log.info(nearbyPlayer.getName() + " | World " + currentWorld + " | Combat Level " + nearbyPlayer.getCombatLevel() + " | " + (nearbyPlayer.getSkullIcon() == 0 ? "Skulled" : "Not Skulled") + " | " + playersItemsString);
 
                 // Increment the targeted player count and send a Discord message if enabled
                 bonScouter.incrementPlayersTargeted();
