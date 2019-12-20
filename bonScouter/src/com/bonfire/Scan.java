@@ -51,6 +51,7 @@ public class Scan extends Task {
 
         // Get all nearby players (check to make sure they're valid by grabbing their name)
         // Also verify that we're not scanning ourselves, so filter ourselves out
+        // TODO: FIX SELF-SCANNING
         Player[] nearbyPlayers = Players.getLoaded(player -> !player.getName().isEmpty() && player != Players.getLocal());
 
         // For each player, increment our count and check their equipment

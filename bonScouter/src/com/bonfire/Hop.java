@@ -20,6 +20,7 @@ public class Hop extends Task {
         Log.fine("Hopping worlds...");
 
         // Get world filters from user's input and hop to the worlds filtered by the predicate
+        // TODO: FIX HOPPING WITH MULTIPLE FILTERS ACTIVE
         WorldHopper.randomHop(world -> world.isMembers() == scouterGUI.getMembersCheckBox()
                         && world.getActivity().contains("Wilderness") == scouterGUI.getWildernessCheckBox()
                         && world.isPVP() == scouterGUI.getpvpCheckBox());
@@ -28,7 +29,6 @@ public class Hop extends Task {
         // Note: This may cause the script to hang for one world hop as the interface does not show until
         //          choose to hop to the world (+1 count to hop, +1 count to confirm and actually hop)
         InterfaceComponent pvpSwitchInterface = Interfaces.getComponent(193, 0, 3);
-
         if (pvpSwitchInterface != null && pvpSwitchInterface.isVisible()){
             pvpSwitchInterface.interact("Switch to it");
         }
