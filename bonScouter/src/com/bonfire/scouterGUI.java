@@ -6,9 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class scouterGUI extends JFrame {
+    private static JTextField itemTextField;
+
     private JCheckBox useDiscordWebhookCheckBox;
     private JTextField webhookURLText;
-    private static JTextField itemTextField;
+
+    private JCheckBox membersCheckBox;
+    private JCheckBox wildernessCheckBox;
 
     // Getter to fetch the text of the itemTextField
     public static String getItemTextField() {
@@ -35,9 +39,13 @@ public class scouterGUI extends JFrame {
         secondRow.add(webhookURLText);
 
         JPanel thirdRow = new JPanel();
-        JButton setAreaToScoutButton = new JButton("Set Area to Scout and Save Configuration");
+        membersCheckBox = new JCheckBox("Members Worlds?");
+        wildernessCheckBox = new JCheckBox("Wilderness Worlds?");
+        JButton setAreaToScoutButton = new JButton("Save Configuration and Begin Scouting");
+        thirdRow.add(membersCheckBox);
+        thirdRow.add(wildernessCheckBox);
         thirdRow.add(setAreaToScoutButton);
-
+        
         JPanel organizerPanel = new JPanel(new BorderLayout());
         organizerPanel.add(firstRow, BorderLayout.NORTH);
         organizerPanel.add(secondRow, BorderLayout.CENTER);
