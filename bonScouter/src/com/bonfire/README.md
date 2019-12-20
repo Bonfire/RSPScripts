@@ -29,4 +29,5 @@ The inspiration for this script came from Crumb's video on Revenant Scouting Bot
 
 ## Credits
 Thank you to [k3kdude](https://github.com/k3kdude) for his DiscordWebhook helper class for Java located [HERE](https://gist.github.com/k3kdude/fba6f6b37594eae3d6f9475330733bdb#file-discordwebhook-java)
+
 Thank you to "catch (Throwable e) { }" on the RSPeer discord for their help with the PVP world switch interface and helping me fix my `WorldHopper.randomHop()` predicates.
