@@ -1,4 +1,4 @@
-# RSPeer-Scripts
+# RSPScripts
 A collection of my RSPeer Scripts
 
 ## Script Contents:
