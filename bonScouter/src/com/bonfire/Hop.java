@@ -8,6 +8,8 @@ import org.rspeer.runetek.api.component.InterfaceAddress;
 import org.rspeer.runetek.api.component.InterfaceComposite;
 import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.component.WorldHopper;
+import org.rspeer.runetek.api.query.WorldQueryBuilder;
+import org.rspeer.runetek.providers.RSWorld;
 import org.rspeer.script.task.Task;
 import org.rspeer.ui.Log;
 
@@ -29,20 +31,27 @@ public class Hop extends Task {
         Log.fine("Hopping worlds...");
 
         boolean P2PCheck = scouterGUI.getMembersCheckBox();
-        boolean WildyCheck = scouterGUI.getWildernessCheckBox();
-        boolean PVPCheck = scouterGUI.getpvpCheckBox();
+        boolean PVPCheck = scouterGUI.getPVPCheckBox();
+        boolean BountyCheck = scouterGUI.getBountyCheckBox();
+
+        // Keep track of the current world to see if we changed worlds
+        int currentWorld = Worlds.getCurrent();
 
         // Get world filters from user's input and hop to the worlds filtered by the predicate
-        // TODO: FIX HOPPING WITH MULTIPLE FILTERS ACTIVE
+        // TODO: Make the predicates for randomHop not loose (remove ORs) and replace with more sound logic
+        //  that has strict filter for worlds. May need help with strict filtering!
+        // An example of unwanted behavior referenced in the above comment is that if you select PVP Worlds
+        //  and Bounty Worlds, it'll try to join PVP Worlds that are members because technically P2P PVP worlds
+        //  are still PVP worlds. This applies to all three filters below due to the ORs. ANDs do not fix this.
         WorldHopper.randomHop(rsWorld
-                -> rsWorld.getId() != Worlds.getCurrent()
-                && rsWorld.isMembers() == P2PCheck
-                && rsWorld.isPVP() == PVPCheck
-                && rsWorld.getActivity().contains("PK") == WildyCheck);
+                -> (rsWorld.getId() != currentWorld)
+                && ((rsWorld.isMembers() == P2PCheck)
+                || (rsWorld.isPVP() == PVPCheck)
+                || (rsWorld.isBounty() == BountyCheck)));
 
         // Make sure to check if we need to confirm world hopping to PVP worlds
         // Note: This may cause the script to hang for one world hop as the interface does not show until
-        //          choose to hop to the world (+1 count to hop, +1 count to confirm and actually hop)
+        //  choose to hop to the world (+1 count to hop, +1 count to confirm and actually hop)
         if (SWITCH_TO_IT_BUTTON_ADDRESS.resolve() != null){
             SWITCH_TO_IT_BUTTON_ADDRESS.resolve().click();
         }

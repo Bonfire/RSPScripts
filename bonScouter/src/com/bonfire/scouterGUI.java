@@ -12,7 +12,7 @@ public class scouterGUI extends JFrame {
     private JTextField webhookURLText;
 
     private static JCheckBox membersCheckBox;
-    private static JCheckBox wildernessCheckBox;
+    private static JCheckBox bountyCheckBox;
     private static JCheckBox pvpCheckBox;
 
     // Getter to fetch the text of the itemTextField
@@ -24,11 +24,11 @@ public class scouterGUI extends JFrame {
         return membersCheckBox.isSelected();
     }
 
-    public static boolean getWildernessCheckBox() {
-        return wildernessCheckBox.isSelected();
+    public static boolean getBountyCheckBox() {
+        return bountyCheckBox.isSelected();
     }
 
-    public static boolean getpvpCheckBox() {
+    public static boolean getPVPCheckBox() {
         return pvpCheckBox.isSelected();
     }
 
@@ -53,11 +53,11 @@ public class scouterGUI extends JFrame {
 
         JPanel thirdRow = new JPanel();
         membersCheckBox = new JCheckBox("Members Worlds?");
-        wildernessCheckBox = new JCheckBox("Wilderness Worlds?");
+        bountyCheckBox = new JCheckBox("Bounty Worlds?");
         pvpCheckBox = new JCheckBox("PvP Worlds?");
         JButton setAreaToScoutButton = new JButton("Save Configuration and Begin Scouting");
         thirdRow.add(membersCheckBox);
-        thirdRow.add(wildernessCheckBox);
+        thirdRow.add(bountyCheckBox);
         thirdRow.add(pvpCheckBox);
         thirdRow.add(setAreaToScoutButton);
 
