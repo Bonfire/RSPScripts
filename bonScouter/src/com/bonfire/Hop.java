@@ -1,5 +1,6 @@
 package com.bonfire;
 
+import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.Interfaces;
@@ -26,8 +27,10 @@ public class Hop extends Task {
         // Make sure to check if we need to confirm world hopping to PVP worlds
         // Note: This may cause the script to hang for one world hop as the interface does not show until
         //          choose to hop to the world (+1 count to hop, +1 count to confirm and actually hop)
-        if (Interfaces.getComponent(193, 0, 3) != null && Interfaces.getComponent(193,0,3).isVisible()){
-            Interfaces.getComponent(193, 0, 3).interact("Switch to it");
+        InterfaceComponent pvpSwitchInterface = Interfaces.getComponent(193, 0, 3);
+
+        if (pvpSwitchInterface != null && pvpSwitchInterface.isVisible()){
+            pvpSwitchInterface.interact("Switch to it");
         }
 
         // Increment the world count
