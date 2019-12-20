@@ -13,6 +13,7 @@ public class scouterGUI extends JFrame {
 
     private static JCheckBox membersCheckBox;
     private static JCheckBox wildernessCheckBox;
+    private static JCheckBox pvpCheckBox;
 
     // Getter to fetch the text of the itemTextField
     public static String getItemTextField() {
@@ -25,6 +26,10 @@ public class scouterGUI extends JFrame {
 
     public static boolean getWildernessCheckBox() {
         return wildernessCheckBox.isSelected();
+    }
+
+    public static boolean getpvpCheckBox() {
+        return pvpCheckBox.isSelected();
     }
 
     public scouterGUI() {
@@ -49,9 +54,11 @@ public class scouterGUI extends JFrame {
         JPanel thirdRow = new JPanel();
         membersCheckBox = new JCheckBox("Members Worlds?");
         wildernessCheckBox = new JCheckBox("Wilderness Worlds?");
+        pvpCheckBox = new JCheckBox("PvP Worlds?");
         JButton setAreaToScoutButton = new JButton("Save Configuration and Begin Scouting");
         thirdRow.add(membersCheckBox);
         thirdRow.add(wildernessCheckBox);
+        thirdRow.add(pvpCheckBox);
         thirdRow.add(setAreaToScoutButton);
 
         JPanel organizerPanel = new JPanel(new BorderLayout());
