@@ -29,4 +29,4 @@ The inspiration for this script came from Crumb's video on Revenant Scouting Bot
 * Enable users to select which worlds they're like to scout (PvP, F2P, P2P, etc.)
 
 ## Credits
-Thank you to [k3kdude](https://github.com/k3kdude) for his DiscordWebhook helper class for Java located here: [HERE](https://gist.github.com/k3kdude/fba6f6b37594eae3d6f9475330733bdb#file-discordwebhook-java)
+Thank you to [k3kdude](https://github.com/k3kdude) for his DiscordWebhook helper class for Java located [HERE](https://gist.github.com/k3kdude/fba6f6b37594eae3d6f9475330733bdb#file-discordwebhook-java)
