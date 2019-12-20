@@ -1,10 +1,13 @@
 package com.bonfire;
 
+import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.adapter.scene.Player;
 import org.rspeer.runetek.api.Definitions;
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.Worlds;
 import org.rspeer.runetek.api.commons.math.Random;
+import org.rspeer.runetek.api.component.InterfaceAddress;
+import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.script.task.Task;
 import org.rspeer.ui.Log;
@@ -63,7 +66,7 @@ public class Scan extends Task {
                 int currentWorld = Worlds.getCurrent();
 
                 // Call out the player in the debug console
-                Log.info(nearbyPlayer.getName() + " | World " + currentWorld + " | " + (nearbyPlayer.getSkullIcon() == 1 ? "Skulled" : "Not Skulled") + " | " + playersItemsString);
+                Log.info(nearbyPlayer.getName() + " | World " + currentWorld + " | " + Integer.toString(nearbyPlayer.getTeam()) + " | " + (nearbyPlayer.getSkullIcon() == 0 ? "Skulled" : "Not Skulled") + " | " + playersItemsString);
 
                 // Increment the targeted player count and send a Discord message if enabled
                 bonScouter.incrementPlayersTargeted();
@@ -78,7 +81,10 @@ public class Scan extends Task {
                     scoutEmbed.setDescription("A new player has been targeted");
                     scoutEmbed.addField("Name", nearbyPlayer.getName(), true);
                     scoutEmbed.addField("World", Integer.toString(currentWorld), true);
-                    scoutEmbed.addField("Skulled", (nearbyPlayer.getSkullIcon() == 1 ? "Yes" : "No"), true);
+                    scoutEmbed.addField("Skulled", (nearbyPlayer.getSkullIcon() == 0 ? "Yes" : "No"), true);
+                    scoutEmbed.addField("Combat Level", Integer.toString(nearbyPlayer.getCombatLevel()), true);
+                    scoutEmbed.addField("Target", (nearbyPlayer.getTarget() != null ? nearbyPlayer.getTarget().getName() : "None"), true);
+                    scoutEmbed.addField("Scouted Item", (playerEquipment.stream().filter(item -> valuableItems.contains(item)).findFirst().get()), true);
                     scoutEmbed.addField("Items", playersItemsString, false);
 
                     try {
