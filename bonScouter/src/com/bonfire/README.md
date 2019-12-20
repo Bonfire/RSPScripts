@@ -1,9 +1,6 @@
 # bonScouter
 A script that scouts a specific area and hops worlds, calling out any people that have specific items.
 
-## Inspiration
-The inspiration for this script came from Crumb's video on Revenant Scouting Bots located [HERE](https://www.youtube.com/watch?v=FF6R_XamIV0). People charge a lot of money to run bots like this, so I figured I'd make one for free.
-
 ## Features
 * Scans nearby players' equipment
 * Checks equipment against a user-submitted list of valuable items
@@ -13,7 +10,7 @@ The inspiration for this script came from Crumb's video on Revenant Scouting Bot
   * If the player is skulled or  not
   * The player's equipment list
 * Includes Discord WebHook integration to allow for Discord message sending when a valuable player is found
-* Hops to a random world once the full scan is complete
+* Hops to a random world (can be filtered) once the full scan is complete
 
 ## Requirements
 * A list of items to search for (prompt is shown when running the script)
@@ -26,7 +23,9 @@ The inspiration for this script came from Crumb's video on Revenant Scouting Bot
 * Allow the importing/exporting of valuable item lists
 * Create a Java list/listview, allowing for easy insertion and deletion of valuable items
 * Enable users to scout all players, not just ones with specific items
-* Enable users to select which worlds they're like to scout (PvP, F2P, P2P, etc.)
+
+## Inspiration
+The inspiration for this script came from Crumb's video on Revenant Scouting Bots located [HERE](https://www.youtube.com/watch?v=FF6R_XamIV0). People charge a lot of money to run bots like this, so I figured I'd make one for free.
 
 ## Credits
 Thank you to [k3kdude](https://github.com/k3kdude) for his DiscordWebhook helper class for Java located [HERE](https://gist.github.com/k3kdude/fba6f6b37594eae3d6f9475330733bdb#file-discordwebhook-java)
