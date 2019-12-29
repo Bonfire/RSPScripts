@@ -9,8 +9,24 @@ A script that scouts a specific area and hops worlds, calling out any people tha
   * The player's world
   * If the player is skulled or  not
   * The player's equipment list
+  * The player’s combat level
+  * The player’s target
+  * The item that caused that player to be targeted
 * Includes Discord WebHook integration to allow for Discord message sending when a valuable player is found
 * Hops to a random world (can be filtered) once the full scan is complete
+
+## Preview
+![Script configuration menu](https://i.imgur.com/QKOrfL4.png)
+
+_Script configuration menu_
+
+![In-game view with statistics at the top-left](https://i.imgur.com/qWuroqM.png)
+
+_In-game view with statistics at the top-left_
+
+![Discord Webhook view](https://i.imgur.com/DeJ4ii7.png)
+
+_Discord Webhook view_
 
 ## Requirements
 * A list of items to search for (prompt is shown when running the script)
