@@ -13,5 +13,6 @@ public class bonBeefCooker extends TaskScript {
     @Override
     public void onStart() {
         Log.fine("Starting bonBeefCooker");
+        submit(TASKS);
     }
 }
