@@ -8,6 +8,7 @@ import org.rspeer.runetek.event.listeners.RenderListener;
 import org.rspeer.runetek.event.types.ChatMessageEvent;
 import org.rspeer.runetek.event.types.ItemTableEvent;
 import org.rspeer.runetek.event.types.RenderEvent;
+import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.script.task.Task;
 import org.rspeer.script.task.TaskScript;
@@ -16,7 +17,7 @@ import org.rspeer.ui.Log;
 import java.awt.*;
 import java.time.LocalTime;
 
-@ScriptMeta(developer = "Bonfire", name = "bonBeefCooker", desc = "Collects raw beef from the Lumbridge cow pens and cooks it for cooking XP.", version = 0.1)
+@ScriptMeta(developer = "Bonfire", name = "bonBeefCooker", desc = "Collects raw beef from the Lumbridge cow pens and cooks it for cooking XP.", category = ScriptCategory.COOKING, version = 0.1)
 public class bonBeefCooker extends TaskScript implements RenderListener, ChatMessageListener, ItemTableListener {
 
     private static final Task[] TASKS = {new WalkToPen(), new Collect(), new WalkFromPen(), new Cook()};
