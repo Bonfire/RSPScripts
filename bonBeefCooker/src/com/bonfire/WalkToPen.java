@@ -15,8 +15,12 @@ public class WalkToPen extends Task {
     public boolean validate() {
         Player localPlayer = Players.getLocal();
 
-        // If our inventory is empty and we're not at the cow pen, then we should head there
-        return Inventory.isEmpty() && !bonBeefCooker.getCowPenArea().contains(localPlayer.getPosition());
+        // If we have room for more raw beef
+        // and we're not in the cow pen
+        // and we're not cooking at the range
+        return (Inventory.getCount(false, "Raw beef") < 28)
+                && !bonBeefCooker.getCowPenArea().contains(localPlayer.getPosition())
+                && !bonBeefCooker.getRangeArea().contains(localPlayer.getPosition());
     }
 
     @Override

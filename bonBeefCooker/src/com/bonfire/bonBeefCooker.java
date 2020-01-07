@@ -22,7 +22,7 @@ public class bonBeefCooker extends TaskScript implements RenderListener, ChatMes
 
     private static final Task[] TASKS = {new WalkToPen(), new Collect(), new WalkFromPen(), new Cook()};
 
-    private static final Area rangeArea = Area.rectangular(3230, 3198, 3237, 3195);
+    private static final Area rangeArea = Area.rectangular(3231, 3197, 3236, 3196);
 
     private static final Area cowPenArea = Area.polygonal(
             new Position(3265, 3296, 0),
@@ -78,11 +78,49 @@ public class bonBeefCooker extends TaskScript implements RenderListener, ChatMes
 
     @Override
     public void notify(RenderEvent renderEvent) {
-        Graphics textGraphics = renderEvent.getSource();
-        textGraphics.drawString("Beef Picked Up: " + beefPickedUp, 10, 40);
-        textGraphics.drawString("Beef Cooked: " + beefCooked, 10, 60);
-        textGraphics.drawString("Beef Burned: " + beefBurned, 10, 80);
-        textGraphics.drawString("Time Elapsed: " + LocalTime.ofSecondOfDay((System.currentTimeMillis() - startTime) / 1000).toString(), 10, 100);
+        Graphics graphicsSource = renderEvent.getSource();
+        Graphics2D textGraphics = (Graphics2D) graphicsSource;
+        textGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        // Foreground rectangle (opaque)
+        textGraphics.setColor(new Color(0, 0, 0, 0.60F));
+        textGraphics.fillRect(3, 258, 513, 80);
+
+        // Background rectangle trim (border)
+        textGraphics.setColor(new Color(128, 255, 127));
+        textGraphics.drawRect(3, 258, 513, 80);
+
+        // Create a larger font size
+        Font normalFont = textGraphics.getFont();
+        Font scriptNameFont = normalFont.deriveFont(normalFont.getSize() * 1.5F);
+        Font elapsedTimeFont = normalFont.deriveFont(normalFont.getSize() * 1.35F);
+        Font versionFont = normalFont.deriveFont(normalFont.getSize() * 0.8F);
+        Font lineFont = normalFont.deriveFont(normalFont.getSize() * 1.2F);
+
+        // Script name
+        textGraphics.setFont(scriptNameFont);
+        textGraphics.drawString("bonBeefCooker", 20, 285);
+
+        // Script elapsed time
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        textGraphics.setFont(elapsedTimeFont);
+        textGraphics.drawString("Time Elapsed: " + LocalTime.ofSecondOfDay(elapsedTime / 1000).toString(), 20, 310);
+
+        // Script version
+        textGraphics.setFont(versionFont);
+        textGraphics.drawString("Version 1.0", 22, 330);
+
+        // Line One
+        textGraphics.setFont(lineFont);
+        textGraphics.drawString("Beef Collected: " + beefPickedUp, 380, 280);
+
+        // Line Two
+        textGraphics.setFont(lineFont);
+        textGraphics.drawString("Beef Cooked: " + beefCooked, 380, 305);
+
+        // Line Three
+        textGraphics.setFont(lineFont);
+        textGraphics.drawString("Beef Burnt: " + beefBurned, 380, 330);
     }
 
     @Override
