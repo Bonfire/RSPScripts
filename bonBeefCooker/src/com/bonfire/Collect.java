@@ -6,12 +6,27 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.movement.Movement;
+import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Pickables;
 import org.rspeer.runetek.api.scene.Players;
+import org.rspeer.runetek.event.listeners.ItemTableListener;
+import org.rspeer.runetek.event.types.ItemTableEvent;
 import org.rspeer.script.task.Task;
 import org.rspeer.ui.Log;
 
 public class Collect extends Task {
+
+    Position[] randomCollectionTiles = {
+            new Position(3243, 3296, 0),
+            new Position(3261, 3291, 0),
+            new Position(3245, 3286, 0),
+            new Position(3260, 3281, 0),
+            new Position(3252, 3276, 0),
+            new Position(3260, 3271, 0),
+            new Position(3255, 3266, 0),
+            new Position(3261, 3261, 0),
+            new Position(3256, 3257, 0)
+    };
 
     @Override
     public boolean validate() {
@@ -36,6 +51,11 @@ public class Collect extends Task {
 
         Player localPlayer = Players.getLocal();
 
+        // If the person is running, just return, we're already doing something
+        if (localPlayer.isMoving()){
+            return Random.nextInt(1000,2500);
+        }
+
         // Find the nearest raw beef!
         Pickable closestBeef = Pickables.getNearest("Raw beef");
 
@@ -47,7 +67,9 @@ public class Collect extends Task {
             // Wait until the player is done moving until we go to pick up another one
             Time.sleepUntil(() -> !Players.getLocal().isMoving(), 500, 10000);
         } else {
-            Log.fine("Couldn't find any beef... Waiting");
+            Log.fine("Couldn't find any beef... Walking to a random tile");
+
+            Movement.walkToRandomized(Random.nextElement(randomCollectionTiles));
 
             // If we couldn't find anything nearby, just wait
             Random.nextInt(2500, 5000);

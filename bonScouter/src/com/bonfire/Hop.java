@@ -1,6 +1,5 @@
 package com.bonfire;
 
-import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.Worlds;
 import org.rspeer.runetek.api.commons.math.Random;
@@ -8,8 +7,6 @@ import org.rspeer.runetek.api.component.InterfaceAddress;
 import org.rspeer.runetek.api.component.InterfaceComposite;
 import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.component.WorldHopper;
-import org.rspeer.runetek.api.query.WorldQueryBuilder;
-import org.rspeer.runetek.providers.RSWorld;
 import org.rspeer.script.task.Task;
 import org.rspeer.ui.Log;
 
@@ -52,7 +49,7 @@ public class Hop extends Task {
         // Make sure to check if we need to confirm world hopping to PVP worlds
         // Note: This may cause the script to hang for one world hop as the interface does not show until
         //  choose to hop to the world (+1 count to hop, +1 count to confirm and actually hop)
-        if (SWITCH_TO_IT_BUTTON_ADDRESS.resolve() != null){
+        if (SWITCH_TO_IT_BUTTON_ADDRESS.resolve() != null) {
             SWITCH_TO_IT_BUTTON_ADDRESS.resolve().click();
         }
 
@@ -62,6 +59,6 @@ public class Hop extends Task {
         // Notify the Scan task that it is able to scan
         bonScouter.setScanComplete(false);
 
-        return Random.nextInt(1000,3000);
+        return Random.nextInt(1000, 3000);
     }
 }

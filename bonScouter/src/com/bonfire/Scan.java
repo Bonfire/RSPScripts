@@ -1,20 +1,19 @@
 package com.bonfire;
 
-import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.adapter.scene.Player;
 import org.rspeer.runetek.api.Definitions;
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.Worlds;
 import org.rspeer.runetek.api.commons.math.Random;
-import org.rspeer.runetek.api.component.InterfaceAddress;
-import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.script.task.Task;
 import org.rspeer.ui.Log;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.rspeer.runetek.api.commons.Time.sleepUntil;
@@ -100,7 +99,7 @@ public class Scan extends Task {
 
         // Notify the Hop task that we're done scanning and sleep
         bonScouter.setScanComplete(true);
-        return Random.nextInt(4000,6000);
+        return Random.nextInt(4000, 6000);
     }
 
     // Thank you to "slut" for this snippet

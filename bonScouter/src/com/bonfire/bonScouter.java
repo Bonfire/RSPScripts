@@ -11,27 +11,14 @@ import java.awt.*;
 
 @ScriptMeta(developer = "Bonfire", name = "bonScouter", desc = "A script that scouts a specific area and hops worlds, calling out any people that have specific items.", version = 1.1)
 public class bonScouter extends TaskScript implements RenderListener {
+    private static final Task[] TASKS = {new Hop(), new Scan()};
     private static boolean scanComplete = true;
     private static int worldsHopped;
     private static int playerScanned;
     private static int playersTargeted;
     private static String webhookURL;
-
     // Use the non-primitive Boolean class for null checking
     private static Boolean useWebhook = null;
-
-    private static final Task[] TASKS = {new Hop(), new Scan()};
-
-    public void onStart() {
-        Log.fine("Starting bonScouter");
-        Log.fine("Showing Configuration GUI");
-
-        // Show the GUI
-        new scouterGUI().setVisible(true);
-
-        // Start the script's tasks
-        submit(TASKS);
-    }
 
     static boolean isScanComplete() {
         return scanComplete;
@@ -67,6 +54,17 @@ public class bonScouter extends TaskScript implements RenderListener {
 
     public static void setUseWebhook(boolean useWebhook) {
         bonScouter.useWebhook = useWebhook;
+    }
+
+    public void onStart() {
+        Log.fine("Starting bonScouter");
+        Log.fine("Showing Configuration GUI");
+
+        // Show the GUI
+        new scouterGUI().setVisible(true);
+
+        // Start the script's tasks
+        submit(TASKS);
     }
 
     @Override

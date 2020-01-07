@@ -7,30 +7,11 @@ import java.awt.event.ActionListener;
 
 public class scouterGUI extends JFrame {
     private static JTextField itemTextField;
-
-    private JCheckBox useDiscordWebhookCheckBox;
-    private JTextField webhookURLText;
-
     private static JCheckBox membersCheckBox;
     private static JCheckBox bountyCheckBox;
     private static JCheckBox pvpCheckBox;
-
-    // Getter to fetch the text of the itemTextField
-    public static String getItemTextField() {
-        return itemTextField.getText();
-    }
-
-    public static boolean getMembersCheckBox() {
-        return membersCheckBox.isSelected();
-    }
-
-    public static boolean getBountyCheckBox() {
-        return bountyCheckBox.isSelected();
-    }
-
-    public static boolean getPVPCheckBox() {
-        return pvpCheckBox.isSelected();
-    }
+    private JCheckBox useDiscordWebhookCheckBox;
+    private JTextField webhookURLText;
 
     public scouterGUI() {
         super("bonScouter Configuration");
@@ -89,5 +70,22 @@ public class scouterGUI extends JFrame {
                 scouterGUI.super.dispose();
             }
         });
+    }
+
+    // Getter to fetch the text of the itemTextField
+    public static String getItemTextField() {
+        return itemTextField.getText();
+    }
+
+    public static boolean getMembersCheckBox() {
+        return membersCheckBox.isSelected();
+    }
+
+    public static boolean getBountyCheckBox() {
+        return bountyCheckBox.isSelected();
+    }
+
+    public static boolean getPVPCheckBox() {
+        return pvpCheckBox.isSelected();
     }
 }
