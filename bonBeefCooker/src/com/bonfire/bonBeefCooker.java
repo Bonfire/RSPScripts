@@ -87,7 +87,7 @@ public class bonBeefCooker extends TaskScript implements RenderListener, ChatMes
         textGraphics.fillRect(3, 258, 513, 80);
 
         // Background rectangle trim (border)
-        textGraphics.setColor(new Color(128, 255, 127));
+        textGraphics.setColor(new Color(86, 198, 83));
         textGraphics.drawRect(3, 258, 513, 80);
 
         // Create a larger font size

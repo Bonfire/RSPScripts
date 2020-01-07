@@ -18,9 +18,7 @@ public class WalkToPen extends Task {
         // If we have room for more raw beef
         // and we're not in the cow pen
         // and we're not cooking at the range
-        return (Inventory.getCount(false, "Raw beef") < 28)
-                && !bonBeefCooker.getCowPenArea().contains(localPlayer.getPosition())
-                && !bonBeefCooker.getRangeArea().contains(localPlayer.getPosition());
+        return (Inventory.isEmpty() && !bonBeefCooker.getCowPenArea().contains(localPlayer.getPosition()));
     }
 
     @Override
