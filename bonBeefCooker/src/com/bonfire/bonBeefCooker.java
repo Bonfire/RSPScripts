@@ -17,7 +17,7 @@ import org.rspeer.ui.Log;
 import java.awt.*;
 import java.time.LocalTime;
 
-@ScriptMeta(developer = "Bonfire", name = "bonBeefCooker", desc = "Collects raw beef from the Lumbridge cow pens and cooks it for cooking XP.", category = ScriptCategory.COOKING, version = 0.1)
+@ScriptMeta(developer = "Bonfire", name = "bonBeefCooker", desc = "Collects raw beef from the Lumbridge cow pens and cooks it at the range for cooking XP.", category = ScriptCategory.COOKING, version = 1.0)
 public class bonBeefCooker extends TaskScript implements RenderListener, ChatMessageListener, ItemTableListener {
 
     private static final Task[] TASKS = {new WalkToPen(), new Collect(), new WalkFromPen(), new Cook()};

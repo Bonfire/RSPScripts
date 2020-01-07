@@ -61,7 +61,7 @@ public class Collect extends Task {
 
         // Pick up the nearest raw beef if there exists one and it's inside the pen
         if (closestBeef != null && bonBeefCooker.getCowPenArea().contains(closestBeef.getPosition())) {
-            Log.fine("Found beef, going to pick up");
+            Log.fine("Walking to beef and picking up");
             closestBeef.click();
 
             // Wait until the player is done moving until we go to pick up another one
