@@ -7,7 +7,7 @@ import org.rspeer.script.task.Task;
 import org.rspeer.script.task.TaskScript;
 import org.rspeer.ui.Log;
 
-@ScriptMeta(developer = "Bonfire", name = "bonCooksAssistant", desc = "Completes the Cook's Assistant F2P quest", category = ScriptCategory.QUESTING, version = 0.1)
+@ScriptMeta(developer = "Bonfire", name = "bonCooksAssistant", desc = "Completes the Cook's Assistant F2P quest", category = ScriptCategory.QUESTING, version = 0.11)
 public class bonCooksAssistant extends TaskScript {
 
     private static final Task[] TASKS = {new WalkToKitchen(), new StartQuest(), new CollectStarterItems(), new WalkToCowPen()};
