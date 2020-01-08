@@ -16,7 +16,7 @@ import org.rspeer.ui.Log;
 
 public class Collect extends Task {
 
-    Position[] randomCollectionTiles = {
+    private Position[] randomCollectionTiles = {
             new Position(3243, 3296, 0),
             new Position(3261, 3291, 0),
             new Position(3245, 3286, 0),
@@ -68,7 +68,6 @@ public class Collect extends Task {
             Time.sleepUntil(() -> !Players.getLocal().isMoving(), 500, 10000);
         } else {
             Log.fine("Couldn't find any beef... Walking to a random tile");
-
             Movement.walkToRandomized(Random.nextElement(randomCollectionTiles));
 
             // If we couldn't find anything nearby, just wait
