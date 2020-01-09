@@ -11,7 +11,7 @@ import org.rspeer.ui.Log;
 @ScriptMeta(developer = "Bonfire", name = "bonCooksAssistant", desc = "Completes the Cook's Assistant F2P quest", category = ScriptCategory.QUESTING, version = 0.11)
 public class bonCooksAssistant extends TaskScript {
 
-    private static final Task[] TASKS = {new WalkToKitchen(), new StartQuest(), new CollectStarterItems(), new WalkToCowPen(), new MilkCow(), new WalkToChickens(), new CollectEgg(), new WalkToWheatField(), new PickWheat()};
+    private static final Task[] TASKS = {new WalkToKitchen(), new StartQuest(), new CollectStarterItems(), new WalkToCowPen(), new MilkCow(), new WalkToChickens(), new CollectEgg(), new WalkToWheatField(), new PickWheat(), new WalkToMill(), new MillGrain()};
 
     static Area lumbridgeKitchen = Area.rectangular(3205, 3212, 3212, 3217);
     static Area lumbridgeCellar = Area.rectangular(3209, 9620, 3211, 9622);
@@ -21,6 +21,8 @@ public class bonCooksAssistant extends TaskScript {
             new Position(3163, 3291, 0),
             new Position(3163, 3298, 0),
             new Position(3157, 3297, 0));
+    static Area lumbridgeMillTop = Area.rectangular(3165, 3308, 3168, 3305, 2);
+    static Area lumbridgeMillBottom = Area.rectangular(3164, 3308, 3168, 3305);
 
     static int cooksAssistantVarp = 29;
 
