@@ -1,12 +1,17 @@
 package com.bonfire;
 
+import org.rspeer.runetek.adapter.Interactable;
 import org.rspeer.runetek.adapter.scene.Npc;
+import org.rspeer.runetek.adapter.scene.Pickable;
 import org.rspeer.runetek.adapter.scene.Player;
+import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Npcs;
+import org.rspeer.runetek.api.scene.Pickables;
 import org.rspeer.runetek.api.scene.Players;
+import org.rspeer.runetek.api.scene.SceneObjects;
 import org.rspeer.script.task.Task;
 import org.rspeer.ui.Log;
 
@@ -29,7 +34,7 @@ public class MilkCow extends Task {
         Log.info("Locating a nearby dairy cow");
 
         // Find a nearby dairy cow and milk it!
-        Npc dairyCow = Npcs.getNearest("Dairy cow");
+        SceneObject dairyCow = SceneObjects.getNearest("Dairy cow");
 
         if (dairyCow != null) {
             Log.info("Milking the cow");
