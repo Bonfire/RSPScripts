@@ -4,6 +4,7 @@ import org.rspeer.runetek.adapter.scene.Player;
 import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.commons.math.Random;
+import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Area;
 import org.rspeer.runetek.api.scene.Players;
@@ -16,10 +17,15 @@ public class WalkToKitchen extends Task {
     public boolean validate() {
         // If the quest hasn't been started yet and we're not in the kitchen we should run this task
         // 0 means the quest hasn't been started, 1 means the quest has been started
+
+        // We should also run this task if we've finished the last task for the quest (grabbing a pot of flour)
+        // and we're not in the kitchen
         Player localPlayer = Players.getLocal();
 
-        return Varps.get(bonCooksAssistant.cooksAssistantVarp) == 0
-                && !bonCooksAssistant.lumbridgeKitchen.contains(localPlayer.getPosition());
+        return (Varps.get(bonCooksAssistant.cooksAssistantVarp) == 0 && !bonCooksAssistant.lumbridgeKitchen.contains(localPlayer.getPosition()))
+                || ((Varps.get(bonCooksAssistant.cooksAssistantVarp) == 1)
+                && Inventory.getCount(false, "Pot of flour") >= 1
+                && !bonCooksAssistant.lumbridgeKitchen.contains(localPlayer.getPosition()));
     }
 
     @Override

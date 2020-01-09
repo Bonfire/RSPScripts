@@ -15,6 +15,7 @@ public class WalkToWheatField extends Task {
         // If we have a bucket of milk and an egg, but no flour, and we're not in the wheat field
         // Add a secondary position check for the top of the mill, to make sure we don't stop the MillGrain task
         // Add a tertiary position check for the bottom of the mill to make sure we don't stop the MillGrain task
+        // Add a fourth position check for the kitchen to make sure we don't stop the EndQuest task
         Player localPlayer = Players.getLocal();
 
         return Varps.get(bonCooksAssistant.cooksAssistantVarp) == 1
@@ -23,7 +24,8 @@ public class WalkToWheatField extends Task {
                 && Inventory.getCount(false, "Grain") < 1
                 && !bonCooksAssistant.lumbridgeWheatField.contains(localPlayer.getPosition())
                 && !bonCooksAssistant.lumbridgeMillTop.contains(localPlayer.getPosition())
-                && !bonCooksAssistant.lumbridgeMillBottom.contains(localPlayer.getPosition());
+                && !bonCooksAssistant.lumbridgeMillBottom.contains(localPlayer.getPosition())
+                && !bonCooksAssistant.lumbridgeKitchen.contains(localPlayer.getPosition());
     }
 
     @Override

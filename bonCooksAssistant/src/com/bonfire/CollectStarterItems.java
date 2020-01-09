@@ -6,6 +6,7 @@ import org.rspeer.runetek.adapter.scene.Player;
 import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.commons.math.Random;
+import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Pickables;
@@ -17,11 +18,14 @@ public class CollectStarterItems extends Task {
     @Override
     public boolean validate() {
         // If the quest has been started (Varp value = 1) and we're in the kitchen or cellar and we don't have the starter items
+        // Also make sure we don't collect these items if we ALREADY have all required items from the end of the quest
         Player localPlayer = Players.getLocal();
 
         return Varps.get(bonCooksAssistant.cooksAssistantVarp) == 1
                 && (bonCooksAssistant.lumbridgeKitchen.contains(localPlayer.getPosition()) || bonCooksAssistant.lumbridgeCellar.contains(localPlayer.getPosition()))
-                && (Inventory.getCount(false, "Pot") < 1 || Inventory.getCount(false, "Bucket") < 1);
+                && (Inventory.getCount(false, "Pot") < 1 || Inventory.getCount(false, "Bucket") < 1)
+                && (!Inventory.contains("Egg") && !Inventory.contains("Bucket of milk") && !Inventory.contains("Pot of flour"))
+                && !Dialog.isOpen();
     }
 
     @Override

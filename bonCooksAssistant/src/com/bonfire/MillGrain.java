@@ -35,11 +35,11 @@ public class MillGrain extends Task {
                 Log.info("Depositing grain into the hopper");
                 nearbyHopper.interact("Fill");
 
-                return Random.nextInt(1500,3000);
+                return Random.nextInt(3000,5000);
             }
         }
 
-        // If we're already deposited the grain, we should instead pull the levers
+        // If we've already deposited the grain, we should instead pull the levers
         if (Inventory.getCount(false, "Grain") < 1) {
             Log.info("Locating the hopper controls");
             SceneObject nearbyHopper = SceneObjects.getNearest("Hopper controls");
