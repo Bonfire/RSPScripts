@@ -17,6 +17,7 @@ public class EndQuest extends Task {
         // If we have all required items and we're in the kitchen, let's finish the quest
         Player localPlayer = Players.getLocal();
 
+        // TODO: Refine this to catch edge cases
         return Varps.get(bonCooksAssistant.cooksAssistantVarp) == 1
                 && (Inventory.getCount(false, "Bucket of milk") >= 1
                 || Inventory.getCount(false, "Egg") >= 1

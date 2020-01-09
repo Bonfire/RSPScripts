@@ -18,6 +18,7 @@ public class WalkToWheatField extends Task {
         // Add a fourth position check for the kitchen to make sure we don't stop the EndQuest task
         Player localPlayer = Players.getLocal();
 
+        // TODO: Refine this to catch edge cases
         return Varps.get(bonCooksAssistant.cooksAssistantVarp) == 1
                 && Inventory.getCount(false, "Bucket of milk") >= 1
                 && Inventory.getCount(false, "Egg") >= 1

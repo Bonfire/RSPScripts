@@ -26,6 +26,8 @@ public class MillGrain extends Task {
 
     @Override
     public int execute() {
+        // TODO: Fix this to make it less likely that the timing may be off. Guarantee that the flow will be correct
+
         // If we haven't deposited our grain yet
         if (Inventory.getCount(false, "Grain") >= 1) {
             Log.info("Locating the hopper");
