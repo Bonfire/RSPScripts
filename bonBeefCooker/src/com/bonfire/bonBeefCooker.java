@@ -113,7 +113,7 @@ public class bonBeefCooker extends TaskScript implements RenderListener, ChatMes
         Font scriptNameFont = normalFont.deriveFont(normalFont.getSize() * 1.5F);
         Font elapsedTimeFont = normalFont.deriveFont(normalFont.getSize() * 1.35F);
         Font versionFont = normalFont.deriveFont(normalFont.getSize() * 0.8F);
-        Font lineFont = normalFont.deriveFont(normalFont.getSize() * 1.2F);
+        Font lineFont = normalFont.deriveFont(normalFont.getSize() * 1.1F);
 
         // Script name
         textGraphics.setFont(scriptNameFont);
@@ -122,7 +122,7 @@ public class bonBeefCooker extends TaskScript implements RenderListener, ChatMes
         // Script elapsed time
         long elapsedTime = System.currentTimeMillis() - startTime;
         textGraphics.setFont(elapsedTimeFont);
-        textGraphics.drawString("Time Elapsed: " + LocalTime.ofSecondOfDay(elapsedTime / 1000).toString(), 20, 310);
+        textGraphics.drawString("Time Elapsed: " + stopWatch.toElapsedString(), 20, 310);
 
         // Script version
         textGraphics.setFont(versionFont);
@@ -131,15 +131,15 @@ public class bonBeefCooker extends TaskScript implements RenderListener, ChatMes
         textGraphics.setFont(lineFont);
 
         // Line One
-        textGraphics.drawString("Beef Collected: " + beefPickedUp, 390, 280);
+        textGraphics.drawString("Beef Collected: " + beefPickedUp, 380, 280);
         textGraphics.drawString(String.format("Levels Gained: %d (%.2f)", levelsGained, stopWatch.getHourlyRate(levelsGained)), 200, 280);
 
         // Line Two
-        textGraphics.drawString("Beef Cooked: " + beefCooked, 390, 305);
+        textGraphics.drawString("Beef Cooked: " + beefCooked, 380, 305);
         textGraphics.drawString(String.format("XP Gained: %d (%.2f)", experienceGained, stopWatch.getHourlyRate(experienceGained)), 200, 305);
 
         // Line Three
-        textGraphics.drawString("Beef Burnt: " + beefBurned, 390, 330);
+        textGraphics.drawString("Beef Burnt: " + beefBurned, 380, 330);
         textGraphics.drawString("Task: " + currentTask, 200, 330);
     }
 
@@ -157,8 +157,7 @@ public class bonBeefCooker extends TaskScript implements RenderListener, ChatMes
     @Override
     public void notify(ItemTableEvent itemTableEvent) {
         // If we pick up beef, add one to our picked up count
-        if (itemTableEvent.getChangeType() == ItemTableEvent.ChangeType.ITEM_ADDED
-                && itemTableEvent.getDefinition().getName().equalsIgnoreCase("Raw beef")) {
+        if (itemTableEvent.getChangeType() == ItemTableEvent.ChangeType.ITEM_ADDED && itemTableEvent.getId() == rawBeefItemID) {
             beefPickedUp++;
         }
     }
