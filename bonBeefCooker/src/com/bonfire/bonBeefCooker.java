@@ -66,7 +66,8 @@ public class bonBeefCooker extends TaskScript implements RenderListener, ChatMes
     private static int beefPickedUp, beefCooked, beefBurned;
 
     private Long startTime = 0L;
-    private int rawBeefItemID = 2132, startCookingXP, startCookingLevel;
+    private int startCookingXP;
+    private int startCookingLevel;
     private static String currentTask = "None";
     private static StopWatch stopWatch;
 
@@ -157,6 +158,7 @@ public class bonBeefCooker extends TaskScript implements RenderListener, ChatMes
     @Override
     public void notify(ItemTableEvent itemTableEvent) {
         // If we pick up beef, add one to our picked up count
+        int rawBeefItemID = 2132;
         if (itemTableEvent.getChangeType() == ItemTableEvent.ChangeType.ITEM_ADDED && itemTableEvent.getId() == rawBeefItemID) {
             beefPickedUp++;
         }
