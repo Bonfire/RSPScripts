@@ -1,5 +1,8 @@
 package com.bonfire;
 
+import org.rspeer.runetek.api.commons.StopWatch;
+import org.rspeer.runetek.api.component.tab.Skill;
+import org.rspeer.runetek.api.component.tab.Skills;
 import org.rspeer.runetek.api.movement.position.Area;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.event.listeners.ChatMessageListener;
@@ -17,7 +20,9 @@ import org.rspeer.ui.Log;
 import java.awt.*;
 import java.time.LocalTime;
 
-@ScriptMeta(developer = "Bonfire", name = "bonBeefCooker", desc = "Collects raw beef from the Lumbridge cow pens and cooks it at the range for cooking XP.", category = ScriptCategory.COOKING, version = 1.0)
+import static org.rspeer.runetek.api.component.tab.Skills.getExperience;
+
+@ScriptMeta(developer = "Bonfire", name = "bonBeefCooker", desc = "Collects raw beef from the Lumbridge cow pens and cooks it at the range for cooking XP.", category = ScriptCategory.COOKING, version = 1.1)
 public class bonBeefCooker extends TaskScript implements RenderListener, ChatMessageListener, ItemTableListener {
 
     private static final Task[] TASKS = {new WalkToPen(), new Collect(), new WalkFromPen(), new Cook()};
@@ -61,12 +66,21 @@ public class bonBeefCooker extends TaskScript implements RenderListener, ChatMes
     private static int beefPickedUp, beefCooked, beefBurned;
 
     private Long startTime = 0L;
-    private int rawBeefItemID = 2132;
+    private int rawBeefItemID = 2132, startCookingXP, startCookingLevel;
+    private static String currentTask = "None";
+    private static StopWatch stopWatch;
+
+    static void setCurrentTask(String currentTask) {
+        bonBeefCooker.currentTask = currentTask;
+    }
 
     @Override
     public void onStart() {
         Log.fine("Starting bonBeefCooker");
+        stopWatch = StopWatch.start();
         startTime = System.currentTimeMillis();
+        startCookingXP = getExperience(Skill.COOKING);
+        startCookingLevel = Skills.getVirtualLevel(Skill.COOKING);
         submit(TASKS);
     }
 
@@ -82,12 +96,16 @@ public class bonBeefCooker extends TaskScript implements RenderListener, ChatMes
         Graphics2D textGraphics = (Graphics2D) graphicsSource;
         textGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+        // Minor calculations
+        int experienceGained = Skills.getExperience(Skill.COOKING) - startCookingXP;
+        int levelsGained = Skills.getVirtualLevel(Skill.COOKING) - startCookingLevel;
+
         // Foreground rectangle (opaque)
         textGraphics.setColor(new Color(0, 0, 0, 0.60F));
         textGraphics.fillRect(3, 258, 513, 80);
 
         // Background rectangle trim (border)
-        textGraphics.setColor(new Color(86, 198, 83));
+        textGraphics.setColor(new Color(73, 255, 99));
         textGraphics.drawRect(3, 258, 513, 80);
 
         // Create a larger font size
@@ -108,19 +126,21 @@ public class bonBeefCooker extends TaskScript implements RenderListener, ChatMes
 
         // Script version
         textGraphics.setFont(versionFont);
-        textGraphics.drawString("Version 1.0", 22, 330);
+        textGraphics.drawString("Version 1.1", 22, 330);
+
+        textGraphics.setFont(lineFont);
 
         // Line One
-        textGraphics.setFont(lineFont);
-        textGraphics.drawString("Beef Collected: " + beefPickedUp, 380, 280);
+        textGraphics.drawString("Beef Collected: " + beefPickedUp, 390, 280);
+        textGraphics.drawString(String.format("Levels Gained: %d (%.2f)", levelsGained, stopWatch.getHourlyRate(levelsGained)), 200, 280);
 
         // Line Two
-        textGraphics.setFont(lineFont);
-        textGraphics.drawString("Beef Cooked: " + beefCooked, 380, 305);
+        textGraphics.drawString("Beef Cooked: " + beefCooked, 390, 305);
+        textGraphics.drawString(String.format("XP Gained: %d (%.2f)", experienceGained, stopWatch.getHourlyRate(experienceGained)), 200, 305);
 
         // Line Three
-        textGraphics.setFont(lineFont);
-        textGraphics.drawString("Beef Burnt: " + beefBurned, 380, 330);
+        textGraphics.drawString("Beef Burnt: " + beefBurned, 390, 330);
+        textGraphics.drawString("Task: " + currentTask, 200, 330);
     }
 
     @Override

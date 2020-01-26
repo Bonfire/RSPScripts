@@ -31,6 +31,8 @@ public class Cook extends Task {
 
     @Override
     public int execute() {
+        bonBeefCooker.setCurrentTask("Cooking");
+
         // If we're already cooking, just return
         Player localPlayer = Players.getLocal();
         if (localPlayer.isAnimating()) {
@@ -45,12 +47,12 @@ public class Cook extends Task {
 
         SceneObject cookingRange = SceneObjects.getNearest("Range");
         if (cookingRange != null) {
-            Log.fine("Clicking on the range");
+            Log.info("Clicking on the range");
             // Click on the range and begin cooking
             cookingRange.interact("Cook");
             Time.sleepUntil(Production::isOpen, 500, 5000);
             if (Production.isOpen()) {
-                Log.fine("Cooking beef");
+                Log.info("Cooking beef");
                 Production.initiate(itemToCook -> itemToCook.getName().equalsIgnoreCase("Raw beef") || itemToCook.getName().equalsIgnoreCase("Cooked meat"));
             }
         }

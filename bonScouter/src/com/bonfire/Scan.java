@@ -1,10 +1,12 @@
 package com.bonfire;
 
+import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.adapter.scene.Player;
 import org.rspeer.runetek.api.Definitions;
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.Worlds;
 import org.rspeer.runetek.api.commons.math.Random;
+import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.script.task.Task;
 import org.rspeer.ui.Log;

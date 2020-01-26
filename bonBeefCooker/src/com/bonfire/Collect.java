@@ -42,9 +42,11 @@ public class Collect extends Task {
 
     @Override
     public int execute() {
+        bonBeefCooker.setCurrentTask("Collecting");
+
         // Turn on run if we can
         if (Movement.getRunEnergy() > Random.nextInt(7, 13) && !Movement.isRunEnabled()) {
-            Log.fine("Turning on run");
+            Log.info("Turning on run");
             Movement.toggleRun(true);
             return Random.nextInt(1000, 2500);
         }
@@ -61,13 +63,13 @@ public class Collect extends Task {
 
         // Pick up the nearest raw beef if there exists one and it's inside the pen
         if (closestBeef != null && bonBeefCooker.getCowPenArea().contains(closestBeef.getPosition())) {
-            Log.fine("Walking to beef and picking up");
+            Log.info("Walking to beef and picking up");
             closestBeef.click();
 
             // Wait until the player is done moving until we go to pick up another one
             Time.sleepUntil(() -> !Players.getLocal().isMoving(), 500, 10000);
         } else {
-            Log.fine("Couldn't find any beef... Walking to a random tile");
+            Log.info("Couldn't find any beef... Walking to a random tile");
             Movement.walkToRandomized(Random.nextElement(randomCollectionTiles));
 
             // If we couldn't find anything nearby, just wait

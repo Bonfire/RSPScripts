@@ -23,9 +23,11 @@ public class WalkToPen extends Task {
 
     @Override
     public int execute() {
+        bonBeefCooker.setCurrentTask("WalkToPen");
+
         // Turn on run before we start if we can
         if (Movement.getRunEnergy() > Random.nextInt(7, 13) && !Movement.isRunEnabled()) {
-            Log.fine("Turning on run");
+            Log.info("Turning on run");
             Movement.toggleRun(true);
             return Random.nextInt(1000, 2500);
         }
