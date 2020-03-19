@@ -2,6 +2,8 @@
 
 A script that completes the F2P quest "Cook's Assistant" from start to finish.
 
+**Note that this was a test to use tasks in a questing script. I would not recommend writing questing scripts this way.**
+
 
 ## Features
 * Talks to the cook in Lumbridge castle kitchen
