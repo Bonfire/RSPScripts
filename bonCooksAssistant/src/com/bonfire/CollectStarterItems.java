@@ -1,6 +1,5 @@
 package com.bonfire;
 
-import org.rspeer.runetek.adapter.Interactable;
 import org.rspeer.runetek.adapter.scene.Pickable;
 import org.rspeer.runetek.adapter.scene.Player;
 import org.rspeer.runetek.api.Varps;

@@ -9,14 +9,12 @@ import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Pickables;
 import org.rspeer.runetek.api.scene.Players;
-import org.rspeer.runetek.event.listeners.ItemTableListener;
-import org.rspeer.runetek.event.types.ItemTableEvent;
 import org.rspeer.script.task.Task;
 import org.rspeer.ui.Log;
 
 public class Collect extends Task {
 
-    private Position[] randomCollectionTiles = {
+    private final Position[] randomCollectionTiles = {
             new Position(3243, 3296, 0),
             new Position(3261, 3291, 0),
             new Position(3245, 3286, 0),

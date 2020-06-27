@@ -10,8 +10,8 @@ public class scouterGUI extends JFrame {
     private static JCheckBox membersCheckBox;
     private static JCheckBox bountyCheckBox;
     private static JCheckBox pvpCheckBox;
-    private JCheckBox useDiscordWebhookCheckBox;
-    private JTextField webhookURLText;
+    private final JCheckBox useDiscordWebhookCheckBox;
+    private final JTextField webhookURLText;
 
     public scouterGUI() {
         super("bonScouter Configuration");

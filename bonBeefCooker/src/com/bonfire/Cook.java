@@ -6,16 +6,18 @@ import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.Production;
+import org.rspeer.runetek.api.component.chatter.BefriendedPlayers;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
+import org.rspeer.runetek.providers.RSBefriendedPlayer;
 import org.rspeer.script.task.Task;
 import org.rspeer.ui.Log;
 
 import java.util.function.Predicate;
 
 public class Cook extends Task {
-    private Predicate<Item> itemsToDrop = item -> item.getName().equals("Cooked meat") || item.getName().equals("Burnt meat");
+    private final Predicate<Item> itemsToDrop = item -> item.getName().equals("Cooked meat") || item.getName().equals("Burnt meat");
 
 
     @Override
@@ -38,13 +40,13 @@ public class Cook extends Task {
         if (localPlayer.isAnimating()) {
             return Random.nextInt(2500, 5000);
         }
-
+        
         // If we've cooked all of our meat, drop it all
         if (Inventory.getCount(false, "Raw beef") == 0) {
             powerDrop(itemsToDrop, Random.high(75, 180), Random.high(180, 220));
             return 1000;
         }
-
+        
         SceneObject cookingRange = SceneObjects.getNearest("Range");
         if (cookingRange != null) {
             Log.info("Clicking on the range");
