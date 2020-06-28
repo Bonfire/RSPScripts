@@ -71,7 +71,7 @@ public class bonRaidScouter extends Script {
 
         // Solve the raid
         if (isInRaid && !isRaidSolved) {
-
+            // TODO: Port RuneLite raid solving
         }
 
         // Exit the raid
@@ -92,4 +92,5 @@ public class bonRaidScouter extends Script {
 
         return Random.nextInt(3000,5000);
     }
+
 }
